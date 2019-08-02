@@ -62,6 +62,7 @@ impl State for Game {
 }
 
 fn main() {
+    std::env::set_var("WINIT_HIDPI_FACTOR", "1.0");
     let settings = Settings {
         scale: quicksilver::graphics::ImageScaleStrategy::Blur,
         ..Default::default()
