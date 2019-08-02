@@ -63,6 +63,7 @@ impl State for Game {
 
 fn main() {
     let settings = Settings {
+        scale: quicksilver::graphics::ImageScaleStrategy::Blur,
         ..Default::default()
     };
     run::<Game>("Quicksilver Roguelike", Vector::new(800, 600), settings);
