@@ -1,6 +1,6 @@
 use quicksilver::{
     geom::{Rectangle, Shape, Vector},
-    graphics::{Background::Img, Background::Blended, Color, Font, FontStyle, Image},
+    graphics::{Background::Blended, Background::Img, Color, Font, FontStyle, Image},
     lifecycle::{run, Asset, Settings, State, Window},
     Future, Result,
 };
@@ -105,7 +105,7 @@ impl State for Game {
 
         let tile_size_px = self.tile_size_px;
 
-        let(tileset, map) = (&mut self.tileset, &self.map);
+        let (tileset, map) = (&mut self.tileset, &self.map);
         tileset.execute(|tileset| {
             for tile in map.iter() {
                 if let Some(image) = tileset.get(&tile.glyph) {
@@ -113,7 +113,7 @@ impl State for Game {
                     window.draw(
                         &Rectangle::new(offset_px + pos_px, image.area().size()),
                         Blended(&image, tile.color),
-                        );
+                    );
                 }
             }
             Ok(())
