@@ -43,17 +43,21 @@ impl State for Game {
 
         self.title.execute(|image| {
             window.draw(
-                &image.area().with_center((window.screen_size().x as i32 / 2, 40)),
+                &image
+                    .area()
+                    .with_center((window.screen_size().x as i32 / 2, 40)),
                 Img(&image),
-                );
+            );
             Ok(())
         })?;
 
         self.mononoki_font_info.execute(|image| {
             window.draw(
-                &image.area().translate((2, window.screen_size().y as i32 - 60)),
+                &image
+                    .area()
+                    .translate((2, window.screen_size().y as i32 - 60)),
                 Img(&image),
-                );
+            );
             Ok(())
         })?;
 
