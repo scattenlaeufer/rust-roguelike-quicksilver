@@ -81,6 +81,8 @@ impl State for Game {
     fn draw(&mut self, window: &mut Window) -> Result<()> {
         window.clear(Color::WHITE)?;
 
+        let offset_px = Vector::new(50, 120);
+
         self.title.execute(|image| {
             window.draw(
                 &image
@@ -109,7 +111,7 @@ impl State for Game {
                 if let Some(image) = tileset.get(&tile.glyph) {
                     let pos_px = tile.pos.times(tile_size_px);
                     window.draw(
-                        &Rectangle::new(pos_px, image.area().size()),
+                        &Rectangle::new(offset_px + pos_px, image.area().size()),
                         Blended(&image, tile.color),
                         );
                 }
