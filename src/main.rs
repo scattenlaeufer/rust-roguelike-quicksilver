@@ -125,6 +125,7 @@ impl State for Game {
 
         let tile_size_px = self.tile_size_px;
 
+        // Draw map
         let (tileset, map) = (&mut self.tileset, &self.map);
         tileset.execute(|tileset| {
             for tile in map.iter() {
@@ -133,6 +134,21 @@ impl State for Game {
                     window.draw(
                         &Rectangle::new(offset_px + pos_px, image.area().size()),
                         Blended(&image, tile.color),
+                    );
+                }
+            }
+            Ok(())
+        })?;
+
+        // Draw entities
+        let (tileset, entities) = (&mut self.tileset, &self.entities);
+        tileset.execute(|tileset| {
+            for entity in entities.iter() {
+                if let Some(image) = tileset.get(&entity.glyph) {
+                    let pos_px = offset_px + entity.pos.times(tile_size_px);
+                    window.draw(
+                        &Rectangle::new(pos_px, image.area().size()),
+                        Blended(&image, entity.color),
                     );
                 }
             }
